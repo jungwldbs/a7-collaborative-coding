@@ -2,7 +2,7 @@
 summary_info <- function(data) {
   result <- list()
   result$participants <- nrow(data)
-  result$num_questions <- nrol(data)
+  result$num_questions <- ncol(data)
   result$questions <- colnames(data)
   return (result)
 }
