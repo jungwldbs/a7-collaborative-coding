@@ -4,9 +4,9 @@ output: html_document
 # Info498F Class Survey
 
 This is a brief summary report of the data collected by the survery current info498 took.
-In total, `r summary$participants` number of students participated this survey. 
-Students were asked to answer `r summary$num_questions`. 
-The survey asks students general questions such as `r sumary$questions[1:3]`.
+In total, r summary$participants number of students participated this survey. 
+Students were asked to answer r summary$num_questions. 
+The survey asks students general questions such as r summary$questions[1:3].
 
 ```{r, echo=FALSE, message=FALSE}
 library(plotly)
@@ -19,7 +19,7 @@ source('scripts/chart2.R')
 # Read in data
 data <- read.csv("https://raw.githubusercontent.com/INFO-498F/a7-survey-data/master/intro_survey_data.csv")
 
-summary <- summary_info(data)
+# summary <- summary_info(data)
 
 ```
 
