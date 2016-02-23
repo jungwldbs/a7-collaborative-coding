@@ -14,6 +14,7 @@ library(dplyr)
 
 # Read in functions from another file:
 source('scripts/summary_info.R')
+source('scripts/chart2.R')
 
 # Read in data
 data <- read.csv("https://raw.githubusercontent.com/INFO-498F/a7-survey-data/master/intro_survey_data.csv")
@@ -30,5 +31,6 @@ summary <- summary_info(data)
 
 ```{r, echo=FALSE, message=FALSE}
 # pass data to render chart 2
+visited_countries(data)
 ```
 
