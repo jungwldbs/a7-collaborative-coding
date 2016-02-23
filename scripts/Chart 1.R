@@ -1,4 +1,4 @@
-build_plot <- function(data) {}
+build_plot <- function(data) {
   
   # Renaming columns
   names(data)[names(data) == 'What.is.your.current.class.standing.'] <- "Class_Standing"
