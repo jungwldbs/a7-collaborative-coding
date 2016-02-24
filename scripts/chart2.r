@@ -1,38 +1,51 @@
-library(dplyr)
-#data
-
-
-visited_countries <- function(data){
-  data_year <- data %>% group_by(What.is.your.current.class.standing.)
+# plot for  different Seahawk Fan responses and class standing
+seahawks_plot <- function(data){
   
-  seahawk_group <- data %>% group_by(Are.you.a.Seahawks.fan.)
+  #change current class standing to Class_Standing
+  names(data)[names(data) == 'What.is.your.current.class.standing.'] <- "Class_Standing"
   
-  #seahawks_fan <- seahawk_group %>% summarise(Yes = sum(Are.you.a.Seahawks.fan. == 'Yes'),
-  #                                           YES = sum(Are.you.a.Seahawks.fan. == 'YES!'),
-  #                                            No = sum(Are.you.a.Seahawks.fan. == 'No'))
+  #group data my class standing
+  data_year <- data %>% group_by(Class_Standing)
   
-  countries_visited <- data_year %>% summarise(visited_countries = mean(How.many.countries.have.you.visited.in.your.life.))
-  
-  library(plotly)
-  p <- plot_ly(
-    countries_visited,
-    x = What.is.your.current.class.standing.,
-    y = visited_countries,
-    name = "",
+  # summarize grouped data by different Seahawk fan responses
+  seahawks_fan <- data_year %>% summarise(Yes = sum(Are.you.a.Seahawks.fan. == 'Yes'),
+                                             YES = sum(Are.you.a.Seahawks.fan. == 'YES!'),
+                                              No = sum(Are.you.a.Seahawks.fan. == 'No'))
+  #plot for Yes response and class standing
+  yes_plot <- plot_ly(
+    seahawks_fan,
+    x = Class_Standing,
+    y = Yes,
     type = "bar",
+    name = "Yes",
     filename="r-docs/simple-bar"
   )
-  p
   
-  #library(plotly)
-  #p2 <- plot_ly(
-  #  x = seahawk_fan$,
-  #  y = year_programming$visited_countries,
-  #  name = "",
-  #  type = "bar",
-  #  filename="r-docs/simple-bar"
-  #)
-  #p2
+  # add plot for YES! response
+  yesyes_plot <- add_trace(
+    yes_plot,
+    x = Class_Standing,
+    y = YES,
+    type = "bar",
+    name = "YES!",
+    filename="r-docs/simple-bar"
+  )
+  
+  # add plot for No response
+  no_plot <- add_trace(
+    yesyes_plot,
+    x = Class_Standing,
+    y = No,
+    type = "bar",
+    name = "No",
+    filename="r-docs/simple-bar"
+  )
+  
+  #Stack all the plots for Seahawk Response
+  layout(no_plot, barmode = "stack")
+  
+  #rename title to Seahawk Fans
+  layout(title = "Seahawk Fans", margin = list(l = 100))
 }
 
 

@@ -34,6 +34,7 @@ build_plot(data)
 
 ```{r, echo=FALSE, message=FALSE, warning=FALSE}
 # pass data to render chart 2
-visited_countries(data)
+# bar graph showing number of different Seahawk fan responses for each standing class
+seahawks_plot(data)
 ```
 
