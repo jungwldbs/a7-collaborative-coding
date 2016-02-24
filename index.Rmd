@@ -18,16 +18,19 @@ data <- read.csv("https://raw.githubusercontent.com/INFO-498F/a7-survey-data/mas
 # pass data to get basic list of information about the data
 summary <- summary_info(data)
 ```
-This is a brief summary report of the data collected by the survery current info498 took.
-In total, `r summary$participants` number of students participated this survey. 
-Students were asked to answer `r summary$num_questions` basic questions. 
-The survey asks students general questions such as `r summary$questions[1:3]`.
+This is a brief summary report of the data collected by the survery current info498 students took at the beginning of the quarter. In total, `r summary$participants` number of students answered this survey. Students were asked to answer `r summary$num_questions` number of basic questions mostly related to their prior experiences with computer programming.For example, students were asked to answer `r summary$questions[1:3]`.
+
+According to the survey, `r summary$noR` number of students out of `r summary$participants` students (`r round(summary$noR / summary$participants * 100, digits = 1)`%) answered they have never used R programming language. However, they decided to take this course and explore R programming language because it seemed like most students (`r round(summary$apply / summary$participants * 100, digits = 1)`% of students) are intended to apply Informatics major at UW.
+
+
 
 ```{r, echo=FALSE, message=FALSE, warning=FALSE}
-# pass data to render chart 1 
+# pass data to render chart 1
+# This bar graph represents number of students using different kinds of OS 
+# data is also seperated by each class standing
 build_plot(data)
 ```
-
+- Students were asked which operating system they typically use. This bar graph represents students' OS preference. The data is also seperated by each class standing. 
 
 ```{r, echo=FALSE, message=FALSE, warning=FALSE}
 # pass data to render chart 2
